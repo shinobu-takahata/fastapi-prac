@@ -5,8 +5,6 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
-    environment:
-      POETRY_VIRTUALENVS_CREATE: "false"
     volumes:
       - ./app:/app
     ports:

@@ -6,10 +6,7 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "python.pythonPath": "/opt/venv/bin/python",
-        "python.analysis.extraPaths": [
-          "/app"
-        ]
+        "python.pythonPath": "/usr/local/bin/python"
       },
       "extensions": [
         "ms-python.python",
@@ -17,5 +14,5 @@
       ]
     }
   },
-  "postCreateCommand": "pip install poetry && poetry install --no-root"
+  "postCreateCommand": "pip install --upgrade pip && pip install poetry && poetry install"
 }

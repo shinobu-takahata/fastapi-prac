@@ -1,0 +1,21 @@
+{
+  "name": "FastAPI Development Container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.analysis.extraPaths": [
+          "/app"
+        ]
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install poetry && poetry install --no-root"
+}

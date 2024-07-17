@@ -14,5 +14,6 @@
       ]
     }
   },
-  "postCreateCommand": "pip install --upgrade pip && pip install poetry && poetry install"
+  // "remoteUser": "devuser",
+  "postCreateCommand": "pip install --upgrade pip && pip install poetry && poetry install --no-root"
 }

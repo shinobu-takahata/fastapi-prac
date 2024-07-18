@@ -3,13 +3,8 @@ This module defines the Item and ItemStatus classes for representing items
 in an inventory system.
 """
 
-from enum import Enum
 from typing import Optional
-
-
-class ItemStatus(Enum):
-    ON_SALE = "ON_SALE"
-    SOLD_OUT = "SOLD_OUT"
+from schemas.schemas import ItemCreate, ItemStatus, ItemUpdate
 
 
 class Item:
@@ -55,27 +50,33 @@ def find_by_name(name: str):
     return filtered_name
 
 
-def create(item_create):
+def create(item_create: ItemCreate):
     new_item = Item(
         id=len(items) + 1,
-        name=item_create.get("name"),
-        price=item_create.get("price"),
-        description=item_create.get("description"),
+        name=item_create.name,
+        price=item_create.price,
+        description=item_create.description,
         status=ItemStatus.ON_SALE,
     )
     items.append(new_item)
     return new_item
 
 
-def update(item_id: int, item_update: dict):
+def update(item_id: int, item_update: ItemUpdate):
     for index, item in enumerate(items):
         if item.id == item_id:
             items[index] = Item(
                 id=item_id,
-                name=item_update.get("name", item.name),
-                price=item_update.get("price", item.price),
-                description=item_update.get("description", item.description),
-                status=item_update.get("status", item.status),
+                name=item.name if item_update.name is None else item_update.name,
+                price=item.price if item_update.price is None else item_update.price,
+                description=(
+                    item.description
+                    if item_update.description is None
+                    else item_update.description
+                ),
+                status=(
+                    item.status if item_update.status is None else item_update.status
+                ),
             )
             return items[index]
     return None

@@ -85,6 +85,6 @@ def update(item_id: int, item_update: ItemUpdate):
 def delete(item_id: int):
     for index, item in enumerate(items):
         if item.id == item_id:
-            del items[index]
-            return True
-    return False
+            deleted_item = items.pop(index)
+            return deleted_item
+    return None
